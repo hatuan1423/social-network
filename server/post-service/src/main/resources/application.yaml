@@ -1,0 +1,63 @@
+server:
+  port: 8083
+  servlet:
+    context-path: /post
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://root:root@localhost:27017/post-service?authSource=admin
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  jpa:
+    hibernate:
+      ddl-auto: update  # Cập nhật schema JPA tự động
+    show-sql: true  # Hiển thị SQL khi thực hiện các query
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 10MB
+      max-request-size: 200MB
+  kafka:
+    bootstrap-servers: localhost:9094
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  elasticsearch:
+    uris: http://localhost:9200
+
+cloud:
+  aws:
+    credentials:
+      access-key: AKIAVPEYWJ4WSCSAXBHV
+      secret-key: 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
+    region:
+      static: us-east-2
+    stack:
+      auto: false
+
+application:
+  bucket:
+    name: imgpost-2
+
+feign:
+  client:
+    config:
+      profile-service:
+        load-balancer:
+          enabled: true
+zoom:
+  client:
+    secret: F725FmFTUXoEEEMMIDET0kLGjfIADe6K
+    id: WoLBm1lJSEC6dJvMOD3ewQ
+    secret-token: 9m03sJibS7eOny0CZaPj3Q
+
+identity:
+  url: http://localhost:8080
+
+profile:
+  url: http://localhost:8081
+app:
+  services:
+    notification: "http://localhost:8082/notification"
