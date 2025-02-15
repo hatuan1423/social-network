@@ -12,6 +12,7 @@
 ## Project details
 
 - User Authentication: Sign in & Sign up with JWT (Login with OTP verification)
+- Supports English and Vietnamese languages, dark mode and light mode
 - User can:
   - Create stories and groups
   - Create comment, like, share, block
